@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>Shortly · DevOps URL Shortener</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand" aria-label="Shortly home">shortly<span aria-hidden="true">.</span></a>
+    <div class="header-actions">
+      <span class="badge">DEVOPS LAB / CA</span>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">◐</span>
+        <span class="theme-label">Dark mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> A BETTER WAY TO SHARE</p>
+      <h1 id="page-title">Big links,<br><span>meet their match.</span></h1>
+      <p class="intro">Make long URLs feel light. Create a clean, shareable link in just a few seconds.</p>
+    </section>
+
+    <section class="card shorten-card" aria-label="Create a short link">
+      <form id="shorten-form">
+        <label for="url">Paste your destination URL</label>
+        <div class="input-row">
+          <span class="input-icon" aria-hidden="true">↗</span>
+          <input id="url" name="url" type="url" required maxlength="2048" autocomplete="url"
+                 placeholder="https://example.com/your-long-link">
+          <button id="submit" class="primary-button" type="submit">
+            <span class="button-label">Shorten link</span><span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <p class="hint"><span aria-hidden="true">ⓘ</span> Supports secure HTTP and HTTPS links</p>
+      </form>
+      <p id="message" class="message error-message" role="status" aria-live="polite"></p>
+
+      <div id="result" class="result-card" hidden>
+        <div class="result-heading">
+          <span class="success-mark" aria-hidden="true">✓</span>
+          <div>
+            <span class="result-label">YOUR SHORT LINK IS READY</span>
+            <p class="result-caption">Copy it and share it anywhere.</p>
+          </div>
+        </div>
+        <div class="result-link-row">
+          <a id="short-link" target="_blank" rel="noopener"></a>
+          <button id="copy" class="secondary-button" type="button">Copy</button>
+        </div>
+        <p id="copy-message" class="copy-message" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="stats-section" aria-labelledby="stats-title">
+      <div class="section-heading">
+        <span class="section-icon" aria-hidden="true">▤</span>
+        <div>
+          <p class="eyebrow">LINK ACTIVITY</p>
+          <h2 id="stats-title">Check your stats</h2>
+        </div>
+      </div>
+      <p class="section-description">Enter a short code to see how your link is performing.</p>
+      <form id="stats-form" class="stats-form">
+        <label class="visually-hidden" for="short-code">Short code</label>
+        <input id="short-code" name="short_code" type="text" required maxlength="64"
+               autocomplete="off" placeholder="e.g. aB12xYz">
+        <button id="stats-submit" class="secondary-button" type="submit">Look up stats <span aria-hidden="true">→</span></button>
+      </form>
+      <p id="stats-message" class="message error-message" role="status" aria-live="polite"></p>
+      <div id="stats-result" class="stats-result" hidden>
+        <div class="stat-item">
+          <span class="stat-label">SHORT CODE</span>
+          <span id="stats-code" class="stat-value"></span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">TOTAL CLICKS</span>
+          <span id="stats-clicks" class="stat-value"></span>
+        </div>
+        <div class="stat-item stat-destination">
+          <span class="stat-label">DESTINATION</span>
+          <span id="stats-original-url" class="stat-value"></span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">CREATED</span>
+          <span id="stats-created-at" class="stat-value"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" aria-label="How it works">
+      <div class="step">
+        <span class="step-number">01</span>
+        <div><h3>Paste</h3><p>Add your original web address.</p></div>
+      </div>
+      <div class="step">
+        <span class="step-number">02</span>
+        <div><h3>Shorten</h3><p>Create a unique, compact link.</p></div>
+      </div>
+      <div class="step">
+        <span class="step-number">03</span>
+        <div><h3>Share</h3><p>Copy it and send it anywhere.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Built with care using Flask</span>
+    <span class="footer-credit">Anas <span aria-hidden="true">·</span> Saad <span aria-hidden="true">·</span> Ruhan</span>
+  </footer>
+</body>
+</html>
